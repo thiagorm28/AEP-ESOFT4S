@@ -27,11 +27,19 @@ public class Usuario {
     }
 
     public void setSenha(String senha) {
-        if (this.senha == null) {
-            System.out.println("Crie sua primeira senha: ");
-            this.senha = senha;
-        } else {
+        if (this.senha != null) {
             throw new RuntimeException("Sua senha já foi criada");
+        } else {
+            this.senha = senha;
+            System.out.println("Senha criada com sucesso");
+        }
+    }
+
+    public void atualizarSenha (String senhaAtual, String novaSenha) {
+        if (senhaAtual.equals(this.senha)) {
+            this.senha = novaSenha;
+        } else {
+            throw new RuntimeException("Essa senha não corresponde a sua senha atual");
         }
     }
 
@@ -50,4 +58,13 @@ public class Usuario {
     public void addPlantacao(PlantasUsuario novaPlanta) {
         this.plantacao.add(novaPlanta);
     }
+
+    public void login (String email, String senha) {
+        if (!this.email.equals(email) || !this.senha.equals(senha)) {
+            throw new RuntimeException("Essa combinação de Email e senha não existe");
+        } else {
+            System.out.println("Login efetuado com sucesso");
+        }
+    }
+
 }
