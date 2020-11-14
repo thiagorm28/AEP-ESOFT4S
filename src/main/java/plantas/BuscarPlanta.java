@@ -1,5 +1,7 @@
 package plantas;
 
+import plantas.especiePlanta.EspeciePlanta;
+
 import java.util.Map;
 
 public class BuscarPlanta {

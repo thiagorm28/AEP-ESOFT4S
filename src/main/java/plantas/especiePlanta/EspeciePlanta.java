@@ -1,24 +1,42 @@
-package plantas;
+package plantas.especiePlanta;
 
-import java.util.ArrayList;
-import java.util.List;
+import plantas.BaseEntity;
 
-public class EspeciePlanta {
+import javax.persistence.Entity;
 
-    private String nomePlanta;
+@Entity
+public class EspeciePlanta extends BaseEntity {
+
+    private String nomeEspecie;
     private String tipo;
     private int diasEstimadosParaPrimeiraColheita;
     private int regadasAoDia;
     private String estacaoBoaParaPlantar;
     private String tipoSolo;
-    private List<String> adubosIndicados = new ArrayList<String>();
+    private String aduboIndicado;
 
-    public String getNomePlanta() {
-        return nomePlanta;
+    public EspeciePlanta() {
+        super();
     }
 
-    public void setNomePlanta(String nomePlanta) {
-        this.nomePlanta = nomePlanta;
+    public EspeciePlanta(String nomeEspecie, String tipo, int diasEstimadosParaPrimeiraColheita, int regadasAoDia, String estacaoBoaParaPlantar, String tipoSolo, String aduboIndicado) {
+        this();
+        this.nomeEspecie = nomeEspecie;
+        this.tipo = tipo;
+        this.diasEstimadosParaPrimeiraColheita = diasEstimadosParaPrimeiraColheita;
+        this.regadasAoDia = regadasAoDia;
+        this.estacaoBoaParaPlantar = estacaoBoaParaPlantar;
+        this.tipoSolo = tipoSolo;
+        this.aduboIndicado = aduboIndicado;
+    }
+
+
+    public String getNomeEspecie() {
+        return nomeEspecie;
+    }
+
+    public void setNomeEspecie(String nomeEspecie) {
+        this.nomeEspecie = nomeEspecie;
     }
 
     public String getTipo() {
@@ -61,16 +79,16 @@ public class EspeciePlanta {
         this.tipoSolo = tipoSolo;
     }
 
-    public List<String> getAdubosIndicados() {
-        return adubosIndicados;
+    public String getAduboIndicado() {
+        return aduboIndicado;
     }
 
-    public void setAdubosIndicados(List<String> adubosIndicados) {
-        this.adubosIndicados = adubosIndicados;
+    public void setAdubosIndicados(String aduboIndicado) {
+        this.aduboIndicado = aduboIndicado;
     }
 
     @Override
     public String toString() {
-        return getNomePlanta();
+        return getNomeEspecie();
     }
 }

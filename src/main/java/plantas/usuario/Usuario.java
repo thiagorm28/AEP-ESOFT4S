@@ -1,14 +1,38 @@
-package plantas;
+package plantas.usuario;
 
+import plantas.BaseEntity;
+import plantas.plantasUsuario.PlantasUsuario;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+@Entity
+public class Usuario extends BaseEntity {
 
     private String email;
     private String nome;
     private String senha;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PlantasUsuario> plantacao = new ArrayList<PlantasUsuario>();
+
+    public Usuario() {
+        super();
+    }
+
+    public Usuario(String email, String senha) {
+        super();
+    }
+
+    public Usuario(String email, String nome, String senha) {
+        this();
+        this.email = email;
+        this.nome = nome;
+        this.senha = senha;
+    }
 
     public String getEmail() {
         return email;
@@ -61,7 +85,7 @@ public class Usuario {
 
     public void login (String email, String senha) {
         if (!this.email.equals(email) || !this.senha.equals(senha)) {
-            throw new RuntimeException("Essa combinação de Email e senha não existe");
+            throw new RuntimeException("Essa combinação de Email e senha não existe ou está incorreta");
         } else {
             System.out.println("Login efetuado com sucesso");
         }

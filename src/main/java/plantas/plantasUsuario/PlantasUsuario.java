@@ -1,16 +1,30 @@
-package plantas;
+package plantas.plantasUsuario;
 
+import plantas.BaseEntity;
+import plantas.especiePlanta.EspeciePlanta;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
-public class PlantasUsuario {
+@Entity
+public class PlantasUsuario extends BaseEntity {
 
     private String apelido;
+    @ManyToOne
     private EspeciePlanta especiePlanta;
     private LocalDate dataDePlantacao;
     private LocalDate previsaoDeColheita;
 
-    public PlantasUsuario(LocalDate dataDePlantacao, EspeciePlanta especiePlanta) {
+    public PlantasUsuario() {
+        super();
+    }
+
+    public PlantasUsuario(String apelido, LocalDate dataDePlantacao, EspeciePlanta especiePlanta) {
+        this();
+        this.apelido = apelido;
         this.dataDePlantacao = dataDePlantacao;
         this.especiePlanta = especiePlanta;
         previsaoDeColheita = dataDePlantacao.plusDays(especiePlanta.getDiasEstimadosParaPrimeiraColheita());
