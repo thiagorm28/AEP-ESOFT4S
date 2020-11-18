@@ -1,12 +1,15 @@
 package plantas.plantasUsuario;
 
 import plantas.BaseEntity;
+import plantas.BuscarPlanta;
 import plantas.especiePlanta.EspeciePlanta;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.UUID;
 
 @Entity
@@ -16,7 +19,6 @@ public class PlantasUsuario extends BaseEntity {
     @ManyToOne
     private EspeciePlanta especiePlanta;
     private LocalDate dataDePlantacao;
-    private LocalDate previsaoDeColheita;
 
     public PlantasUsuario() {
         super();
@@ -27,7 +29,6 @@ public class PlantasUsuario extends BaseEntity {
         this.apelido = apelido;
         this.dataDePlantacao = dataDePlantacao;
         this.especiePlanta = especiePlanta;
-        previsaoDeColheita = dataDePlantacao.plusDays(especiePlanta.getDiasEstimadosParaPrimeiraColheita());
     }
 
     public String getApelido() {
@@ -38,28 +39,6 @@ public class PlantasUsuario extends BaseEntity {
         this.apelido = apelido;
     }
 
-//    Antigo
-//    public void setEspeciePlanta(String nomePlanta, List<EspeciePlanta> plantas) {
-//        EspeciePlanta especiePlanta = plantaExiste(nomePlanta, plantas);
-//        if (!especiePlanta.getNomePlanta().equals(null)) {
-//            System.out.println("Espécie de planta encontrada, e " + especiePlanta + " foi adicionado como espécie da nova planta!");
-//            this.especiePlanta = especiePlanta;
-//        } else {
-//            System.out.println("Espécie de planta não encontrada!");
-//        }
-//    }
-//
-//    private EspeciePlanta plantaExiste (String nomePlanta, List<EspeciePlanta> plantas) {
-//        EspeciePlanta especiePlanta = new EspeciePlanta();
-//        for (EspeciePlanta p: plantas) {
-//            if (p.getNomePlanta().equals(nomePlanta)) {
-//                especiePlanta = p;
-//                break;
-//            }
-//        }
-//        return especiePlanta;
-//    }
-
     public EspeciePlanta getEspeciePlanta() {
         return especiePlanta;
     }
@@ -68,20 +47,24 @@ public class PlantasUsuario extends BaseEntity {
         return dataDePlantacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public String getPrevisaoDeColheita() {
-        return previsaoDeColheita.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    }
-
     public void setDataDePlantacao(LocalDate dataDePlantacao) {
         this.dataDePlantacao = dataDePlantacao;
     }
 
+    public void criarPlantaUsuario(Map<String, EspeciePlanta> plantas) {
+        Scanner leia = new Scanner(System.in);
+        this.especiePlanta = BuscarPlanta.buscarEspeciePlanta(plantas);
+        System.out.println("Insira o apelido da nova planta");
+        this.apelido = leia.nextLine();
+        this.dataDePlantacao = LocalDate.now();
+        System.out.println("Nova Planta cadastrada com sucesso");
+    }
+
     @Override
     public String toString() {
-        if (this.apelido == null)
-            return("Espécie: " + this.especiePlanta);
-        else {
-            return("Espécie: " + this.especiePlanta + ", Apelido: " + this.apelido);
-        }
+        return "Suas Plantas: " +
+                "apelido: " + apelido + '\'' +
+                ", espécie da planta: " + especiePlanta.getNomeEspecie() +
+                ", data de plantacao: " + dataDePlantacao;
     }
 }

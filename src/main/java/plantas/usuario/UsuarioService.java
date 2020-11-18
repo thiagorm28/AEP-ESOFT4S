@@ -2,8 +2,8 @@ package plantas.usuario;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import plantas.plantasUsuario.PlantasUsuario;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -20,19 +20,13 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    public void login(String email, String senha) {
-        List<Usuario> listaRetornada  = usuarioRepository.findAll();
-        Usuario usuarioCerto = null;
-        for (Usuario u : listaRetornada) {
-            if (Objects.equals(u.getEmail(), email)) {
-                usuarioCerto = u;
-            }
-        }
-        usuarioCerto.login(email, senha);
-
-    }
 
     public List<Usuario> getAll() {
         return usuarioRepository.findAll();
+    }
+
+    public List<PlantasUsuario> getPlantasDoUsuario(Usuario usuario) {
+        Optional<Usuario> usuarioEncontrado =  usuarioRepository.findById(usuario.getId());
+        return usuarioEncontrado.get().getPlantaçao();
     }
 }

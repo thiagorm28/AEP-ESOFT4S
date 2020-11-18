@@ -33,19 +33,14 @@ public class AppPlantasPersistente implements CommandLineRunner{
         EspeciePlanta tomate = new EspeciePlanta(
                         "Tomate",
                         "Fruta",
-                        20,
-                        1,
+                        "Anual",
+                        "Irrigar Regularmente",
                         "Inverno",
-                        "Arenoso",
-                        "Bom");
+                        "Arenoso"
+        );
         especiePlantaService.criarEspeciePlantas(tomate);
         Usuario usuario1 = new Usuario("joao@hotmail.com", "João Silva", "1234");
         usuarioService.criarUsuario(usuario1);
-        try {
-            usuarioService.login("joao@hotmail.com", "1234");
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
         PlantasUsuario plantasUsuario1 = null;
         try {
             EspeciePlanta novaEspeciePlanta  = especiePlantaService.buscarPorNomeEspecie("Tomate");
@@ -53,7 +48,7 @@ public class AppPlantasPersistente implements CommandLineRunner{
         } catch (Exception exception){
             System.out.println(exception.getMessage());
         }
-        
+
         usuario1.addPlantacao(plantasUsuario1);
         usuarioService.criarUsuario(usuario1);
 

@@ -7,8 +7,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Entity
 public class Usuario extends BaseEntity {
@@ -67,7 +69,11 @@ public class Usuario extends BaseEntity {
         }
     }
 
-    public String getPlantacao() {
+    public List<PlantasUsuario> getPlantaçao() {
+        return this.plantacao;
+    }
+
+    public String mostrarPlantacao() {
         String listaDePlantas = "";
         for (PlantasUsuario p: plantacao) {
             if(p.equals(plantacao.get(plantacao.size()-1))) {
@@ -83,12 +89,49 @@ public class Usuario extends BaseEntity {
         this.plantacao.add(novaPlanta);
     }
 
-    public void login (String email, String senha) {
+    public boolean login () {
+        Scanner leia = new Scanner(System.in);
+        System.out.println("Insira seu email: ");
+        String email = leia.nextLine();
+        System.out.println("Insira sua senha: ");
+        String senha = leia.nextLine();
         if (!this.email.equals(email) || !this.senha.equals(senha)) {
-            throw new RuntimeException("Essa combinação de Email e senha não existe ou está incorreta");
+            System.out.println("Essa combinação de Email e senha não existe ou está incorreta");
+            return false;
         } else {
             System.out.println("Login efetuado com sucesso");
+            return true;
         }
     }
+
+    public void cadastrarUsuario() {
+        Scanner leia = new Scanner(System.in);
+        System.out.println("Cadastro de Usuário: " + "" +
+                "\n---------------------------------------\n");
+        System.out.println("Insira seu nome: ");
+        this.nome = leia.nextLine();
+
+        System.out.println("Insira seu email: ");
+        this.email = leia.nextLine();
+
+        boolean iguais = false;
+        while (!iguais) {
+            System.out.println("Insira sua senha: ");
+            String verifSenha = leia.nextLine();
+            System.out.println("Confirme sua senha: ");
+            String verifSenha2 = leia.nextLine();
+            if (verifSenha.equals(verifSenha2)) {
+                this.senha = verifSenha;
+                iguais = true;
+            }
+            else {
+                System.out.println("As senha não são correspondentes");
+            }
+        }
+
+        System.out.println("Cadastro efetuado com sucesso!");
+    }
+
+
 
 }

@@ -9,25 +9,23 @@ public class EspeciePlanta extends BaseEntity {
 
     private String nomeEspecie;
     private String tipo;
-    private int diasEstimadosParaPrimeiraColheita;
-    private int regadasAoDia;
-    private String estacaoBoaParaPlantar;
+    private String tipoDeColheita;
+    private String tipoDeIrrigacao;
     private String tipoSolo;
-    private String aduboIndicado;
+    private String observacoesExtras;
 
     public EspeciePlanta() {
         super();
     }
 
-    public EspeciePlanta(String nomeEspecie, String tipo, int diasEstimadosParaPrimeiraColheita, int regadasAoDia, String estacaoBoaParaPlantar, String tipoSolo, String aduboIndicado) {
+    public EspeciePlanta(String nomeEspecie, String tipo, String tipoDeColheita, String tipoDeIrrigacao, String observacoesExtras, String tipoSolo) {
         this();
         this.nomeEspecie = nomeEspecie;
         this.tipo = tipo;
-        this.diasEstimadosParaPrimeiraColheita = diasEstimadosParaPrimeiraColheita;
-        this.regadasAoDia = regadasAoDia;
-        this.estacaoBoaParaPlantar = estacaoBoaParaPlantar;
+        this.tipoDeColheita = tipoDeColheita;
+        this.tipoDeIrrigacao = tipoDeIrrigacao;
+        this.observacoesExtras = observacoesExtras;
         this.tipoSolo = tipoSolo;
-        this.aduboIndicado = aduboIndicado;
     }
 
 
@@ -47,28 +45,28 @@ public class EspeciePlanta extends BaseEntity {
         this.tipo = tipo;
     }
 
-    public int getDiasEstimadosParaPrimeiraColheita() {
-        return diasEstimadosParaPrimeiraColheita;
+    public String getTipoDeColheita() {
+        return tipoDeColheita;
     }
 
-    public void setDiasEstimadosParaPrimeiraColheita(int diasEstimadosParaPrimeiraColheita) {
-        this.diasEstimadosParaPrimeiraColheita = diasEstimadosParaPrimeiraColheita;
+    public void setTipoDeColheita(String tipoDeColheita) {
+        this.tipoDeColheita = tipoDeColheita;
     }
 
-    public int getRegadasAoDia() {
-        return regadasAoDia;
+    public String getTipoDeIrrigacao() {
+        return tipoDeIrrigacao;
     }
 
-    public void setRegadasAoDia(int regadasAoDia) {
-        this.regadasAoDia = regadasAoDia;
+    public void setTipoDeIrrigacao(String tipoDeIrrigacao) {
+        this.tipoDeIrrigacao = tipoDeIrrigacao;
     }
 
-    public String getEstacaoBoaParaPlantar() {
-        return estacaoBoaParaPlantar;
+    public String getObservacoesExtras() {
+        return observacoesExtras;
     }
 
-    public void setEstacaoBoaParaPlantar(String estacaoBoaParaPlantar) {
-        this.estacaoBoaParaPlantar = estacaoBoaParaPlantar;
+    public void setObservacoesExtras(String observacoesExtras) {
+        this.observacoesExtras = observacoesExtras;
     }
 
     public String getTipoSolo() {
@@ -79,16 +77,16 @@ public class EspeciePlanta extends BaseEntity {
         this.tipoSolo = tipoSolo;
     }
 
-    public String getAduboIndicado() {
-        return aduboIndicado;
-    }
-
     public void setAdubosIndicados(String aduboIndicado) {
-        this.aduboIndicado = aduboIndicado;
     }
 
     @Override
     public String toString() {
-        return getNomeEspecie();
+        return "Nome da espécie: " + nomeEspecie + '\'' +
+                ", tipo: " + tipo + '\'' +
+                ", tipo de colheita: " + tipoDeColheita + '\'' +
+                ", tipo de irrigacao: '" + tipoDeIrrigacao + '\'' +
+                ", tipo de solo: " + tipoSolo + '\'' +
+                ", observacoes extras: " + observacoesExtras + '\'';
     }
 }
