@@ -1,4 +1,4 @@
-package plantas;
+package plantas.especiePlanta;
 
 import plantas.especiePlanta.EspeciePlanta;
 

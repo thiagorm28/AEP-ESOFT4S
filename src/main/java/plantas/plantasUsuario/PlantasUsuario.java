@@ -1,7 +1,7 @@
 package plantas.plantasUsuario;
 
 import plantas.BaseEntity;
-import plantas.BuscarPlanta;
+import plantas.especiePlanta.BuscarPlanta;
 import plantas.especiePlanta.EspeciePlanta;
 
 import javax.persistence.Entity;
@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
 @Entity
 public class PlantasUsuario extends BaseEntity {

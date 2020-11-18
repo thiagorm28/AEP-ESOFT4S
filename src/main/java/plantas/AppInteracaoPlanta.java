@@ -1,11 +1,10 @@
 package plantas;
 
+import plantas.especiePlanta.BuscarPlanta;
 import plantas.especiePlanta.EspeciePlanta;
 import plantas.plantasUsuario.PlantasUsuario;
 import plantas.usuario.Usuario;
 
-import javax.swing.*;
-import java.time.LocalDate;
 import java.util.*;
 
 public class AppInteracaoPlanta {
