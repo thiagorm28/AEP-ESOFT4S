@@ -96,7 +96,7 @@ public class Usuario extends BaseEntity {
         System.out.println("Insira sua senha: ");
         String senha = leia.nextLine();
         if (!this.email.equals(email) || !this.senha.equals(senha)) {
-            System.out.println("Essa combinação de Email e senha não existe ou está incorreta");
+            System.out.println("Essa combinação de Email e senha não existe ou está incorreta, tente novamente");
             return false;
         } else {
             System.out.println("Login efetuado com sucesso");
