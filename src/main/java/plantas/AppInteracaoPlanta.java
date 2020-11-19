@@ -29,12 +29,12 @@ public class AppInteracaoPlanta {
         System.out.println("Seja bem vindo, vamos iniciar seu cadastro: ");
         usuario.cadastrarUsuario();
 
+        System.out.println("Agora para acessar o app, efetue seu login!");
         boolean logadoComSucesso = false;
         while (!logadoComSucesso) {
-            System.out.println("Agora para acessar o app, efetue seu login!");
             logadoComSucesso = usuario.login();
         }
-        
+
         int opcao = 0;
         do
         {
