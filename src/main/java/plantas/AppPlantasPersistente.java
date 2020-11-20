@@ -6,12 +6,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import plantas.especiePlanta.EspeciePlanta;
 import plantas.especiePlanta.EspeciePlantaService;
+import plantas.interacaoUsuario.CriarEspeciesPlantas;
 import plantas.plantasUsuario.PlantasUsuario;
 import plantas.plantasUsuario.PlantasUsuarioService;
 import plantas.usuario.Usuario;
 import plantas.usuario.UsuarioService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @SpringBootApplication
 public class AppPlantasPersistente implements CommandLineRunner{
@@ -30,15 +34,10 @@ public class AppPlantasPersistente implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
 
-        EspeciePlanta tomate = new EspeciePlanta(
-                        "Tomate",
-                        "Fruta",
-                        "Anual",
-                        "Irrigar Regularmente",
-                        "Inverno",
-                        "Arenoso"
-        );
-        especiePlantaService.criarEspeciePlantas(tomate);
+        Map<String, EspeciePlanta> plantaMap = CriarEspeciesPlantas.criasEspeciesPlantas();
+        List<EspeciePlanta> plantas = new ArrayList<>(plantaMap.values());
+        especiePlantaService.criarEspeciePlantasAPartirDeList(plantas);
+
         Usuario usuario1 = new Usuario("joao@hotmail.com", "João Silva", "1234");
         usuarioService.criarUsuario(usuario1);
         PlantasUsuario plantasUsuario1 = null;
@@ -52,14 +51,17 @@ public class AppPlantasPersistente implements CommandLineRunner{
         usuario1.addPlantacao(plantasUsuario1);
         usuarioService.criarUsuario(usuario1);
 
+        System.out.println("Espécies de plantas: ");
         for (EspeciePlanta ep : especiePlantaService.getAll()) {
             System.out.println(ep);
         }
 
+        System.out.println("Usuários: ");
         for (Usuario u : usuarioService.getAll()) {
             System.out.println(u.getEmail());
         }
 
+        System.out.println("Plantas dos usuários: ");
         for (PlantasUsuario pu : plantasUsuarioService.getAll()) {
             System.out.println(pu.getApelido());
         }

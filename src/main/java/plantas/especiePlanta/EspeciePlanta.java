@@ -2,6 +2,7 @@ package plantas.especiePlanta;
 
 import plantas.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
@@ -11,14 +12,16 @@ public class EspeciePlanta extends BaseEntity {
     private String tipo;
     private String tipoDeColheita;
     private String tipoDeIrrigacao;
+    @Column(length = 1024)
     private String tipoSolo;
+    @Column(length = 1024)
     private String observacoesExtras;
 
     public EspeciePlanta() {
         super();
     }
 
-    public EspeciePlanta(String nomeEspecie, String tipo, String tipoDeColheita, String tipoDeIrrigacao, String observacoesExtras, String tipoSolo) {
+    public EspeciePlanta(String nomeEspecie, String tipo, String tipoDeColheita, String tipoDeIrrigacao, String tipoSolo, String observacoesExtras) {
         this();
         this.nomeEspecie = nomeEspecie;
         this.tipo = tipo;
@@ -83,10 +86,10 @@ public class EspeciePlanta extends BaseEntity {
     @Override
     public String toString() {
         return "Nome da espécie: " + nomeEspecie + '\'' +
-                ", tipo: " + tipo + '\'' +
-                ", tipo de colheita: " + tipoDeColheita + '\'' +
-                ", tipo de irrigacao: '" + tipoDeIrrigacao + '\'' +
-                ", tipo de solo: " + tipoSolo + '\'' +
-                ", observacoes extras: " + observacoesExtras + '\'';
+                ", \ntipo: " + tipo + '\'' +
+                ", \ntipo de colheita: " + tipoDeColheita + '\'' +
+                ", \ntipo de irrigacao: " + tipoDeIrrigacao + '\'' +
+                ", \ntipo de solo: " + tipoSolo + '\'' +
+                ", \nobservacoes extras: " + observacoesExtras + '\'';
     }
 }

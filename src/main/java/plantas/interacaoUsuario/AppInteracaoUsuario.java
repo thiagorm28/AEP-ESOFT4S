@@ -1,4 +1,4 @@
-package plantas;
+package plantas.interacaoUsuario;
 
 import plantas.especiePlanta.BuscarPlanta;
 import plantas.especiePlanta.EspeciePlanta;
@@ -7,21 +7,12 @@ import plantas.usuario.Usuario;
 
 import java.util.*;
 
-public class AppInteracaoPlanta {
+public class AppInteracaoUsuario {
 
     public static void main(String[] args) {
 
-        EspeciePlanta tomate = new EspeciePlanta(
-                "Tomate",
-                "Fruta",
-                "Anual",
-                "Irrigar Regularmente",
-                "Inverno",
-                "Arenoso"
-        );
-
-        Map<String, EspeciePlanta> plantas = new HashMap<>();
-        plantas.put(tomate.getNomeEspecie(), tomate);
+        //Criando a espécies de plantas.
+        Map<String, EspeciePlanta> plantas = CriarEspeciesPlantas.criasEspeciesPlantas();
 
         Scanner leia = new Scanner(System.in);
         Usuario usuario = new Usuario();

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -17,9 +18,16 @@ public class EspeciePlantaService {
         especiePlantaRepository.save(especiePlanta);
     }
 
+    public void criarEspeciePlantasAPartirDeList(List<EspeciePlanta> plantas) {
+        for (EspeciePlanta ep : plantas) {
+            criarEspeciePlantas(ep);
+        }
+    }
+
     public List<EspeciePlanta> getAll() {
         return especiePlantaRepository.findAll();
     }
+
 
     //Busca a espécie da planta pelo nome no banco de dados
     public EspeciePlanta buscarPorNomeEspecie(String nomeEspecie) {
